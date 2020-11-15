@@ -1,7 +1,6 @@
-
 import unittest
-from app import main, my_good_fun
-
+from app import main
+from app import home_work
 
 class TestClass(unittest.TestCase):
     def setUp(self):
@@ -23,8 +22,9 @@ class TestClass(unittest.TestCase):
             main(self.ip_url)
 
     def test_home_work(self):
-        # Ваш захист
-        self.assertTrue(True)
-
-    def test_my_fun(self):
-        self.assertEqual(my_good_fun(), "Success")
+        time_a = ['AM', '123 PM', 'am', 'pm', '21', '']
+        for b in time_a:
+            try:
+                self.assertEqual(home_work(b), True)
+            except Exception as e:
+                self.assertEqual(str(e), "Error: time:" + b)
