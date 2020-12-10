@@ -1,4 +1,3 @@
-
 import requests
 import json
 import logging
@@ -20,16 +19,16 @@ def main(url):
         r = requests.get(url)
         r.raise_for_status()
     except HTTPError as http_err:
-        logging.error("The server is unavailable. Please, restart the server again. Error: %s", http_err)
+        logging.error("Сервер недоступний. Будь ласка, перезапустіть сервер ще раз. Помилка: %s", http_err)
     except Exception as err:
-        logging.error("The server is unavailable. Please restart the server. Error: %s", err)
+        logging.error("Сервер недоступний. Будь ласка, запустіть сервер ще раз. Помилка: %s", err)
     else:
         data = json.loads(r.content)
-        logging.info("The server is available. Time on the server: %s", data['date'])
-        logging.info("Requested page: : %s", data['current_page'])
-        logging.info("The server response contains the following fields:")
+        logging.info("Сервер доступний. Час на сервері: %s", data['date'])
+        logging.info("Запитувана сторінка: : %s", data['current_page'])
+        logging.info("Відповідь сервера місти наступні поля:")
         for key in data.keys():
-            logging.info("Key : %s, Value: %s", key, data[key])
+            logging.info("Ключ: %s, Значення: %s", key, data[key])
 
 
 if __name__ == '__main__':
